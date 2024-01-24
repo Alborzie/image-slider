@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container-div{
+            display: flex;
+            height: fit-content;
+            justify-content: center;
+        }
+        .slider-div{
+            background-color: aqua;
+            padding: 5px;
+            height: 500px;
+            display: grid;
+            grid-template-columns: auto;
+            grid-template-rows: auto;
+            justify-content: center;
+            align-items: center;
+            width: 700px;
+            border: 2px solid blue;
+            border-radius: 10px;
+        }
+        .slider-img{
+            width: 600px;
+            height: 450px;
+            border-radius: 5px;
+            grid-area: 1/1/2/2;
+            /* slider animation */
+            opacity: 0;
+            transition-duration: 3s;
+            transition-property: all;
+        }
+        .active-img{
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-div">
+        <div class="slider-div">
+            <img src="R6S_Wallpaper-01_1920x1080.jpg" alt="image 1" class="slider-img">
+            <img src="R6S_Wallpaper-02_1920x1080.jpg" alt="image 2" class="slider-img">
+            <img src="R6S_Wallpaper-03_1920x1080.jpg" alt="image 3" class="slider-img">
+            <img src="R6S_Wallpaper-04_1920x1080.jpg" alt="image 4" class="slider-img">
+            <img src="R6S_Wallpaper-05_1920x1080.jpg" alt="image 5" class="slider-img">
+            <!-- add more images -->
+        </div>
+    </div>
+
+    <script>
+        const images = document.getElementsByClassName("slider-img") 
+        let current_slide_idx = -1
+
+        function showSlide(){
+            for(let img of images){
+                if( images[current_slide_idx] == img ){
+                    img.classList.add("active-img")
+                }
+                else{
+                    img.classList.remove("active-img")
+                }
+            }
+        }
+        function nextSlide(){
+            current_slide_idx++
+            if(current_slide_idx >= images.length){
+                current_slide_idx = 0
+            }
+            showSlide()
+        }
+
+        setInterval(nextSlide, 5000)
+
+    </script>
+</body>
+</html>
